@@ -2,14 +2,14 @@
 
 Official code for the NeurIPS 2026 paper: **Interpretable Multiway-Split Trees**, by Bo Chi, Yulin Zhang, Chudi Zhong, and Cynthia Rudin.
 
-SPLINTER is a family of accurate, fast, and interpretable multiway splits decision tree algorithms that combine DP with BnB search. The algorithms learn trees with multiway splits, where a node can have more than two branches. For example, one node can send low, medium, and high values of a feature to three different branches. Nonlinear splits can also group non-adjacent ranges, such as low and high values, into the same branch.
+SPLINTER is a family of accurate, fast, and interpretable multiway-split decision tree algorithms that combine DP with BnB search. The algorithms learn trees with multiway splits, where a node can have more than 2 branches. For example, one node can send low, medium, and high values of a feature to 3 different branches. Nonlinear splits can also group non-adjacent ranges, such as low and high values, into the same branch.
 
 We first fit LightGBM on the training data and collect the thresholds used in its trees. These thresholds are possible split points for each feature: a split at age 50, for example, makes 50 a candidate threshold for age. SPLINTER uses them to propose multiway splits and looks ahead at the subtrees each split could produce before choosing among them. You can reuse the same LightGBM thresholds when fitting trees with different settings.
 
 We also implement RESPLINTER, which builds a Rashomon set of near-optimal trees. This lets you compare different rules for the same data, sample alternative trees, and see where their predictions disagree.
 
 <p align="center">
-  <img src="docs/images/teaser.png" alt="A SPLINTER tree on the breast cancer data, with a three-way split on worst perimeter" width="420">
+  <img src="docs/images/teaser.png" alt="A SPLINTER tree on the breast cancer data, with a 3-way split on worst perimeter" width="420">
 </p>
 
 ## Installation
@@ -23,7 +23,7 @@ uv sync --locked
 uv run python examples/classification.py
 ```
 
-The first installation compiles the solver and may take a few minutes. The last command fits two trees and prints their accuracy, size, and rules.
+The first installation compiles the solver and may take a few minutes. The last command fits 2 trees and prints their accuracy, size, and rules.
 
 If you prefer pip, run these commands from the repository root after cloning it.
 
@@ -87,7 +87,7 @@ Compute the cache from the training split only, and reuse it with the same train
 
 ## Generate a Rashomon set
 
-For binary tasks, `RESPLINTER` collects trees whose training error rate plus `reg` per leaf is close to the best score found. With `theta=0.05`, a best score of 0.10 gives a cutoff of 0.105. Reusing the split above, this example prints a best tree, samples three alternatives, and predicts by voting across the set.
+For binary tasks, `RESPLINTER` collects trees whose training error rate plus `reg` per leaf is close to the best score found. With `theta=0.05`, a best score of 0.10 gives a cutoff of 0.105. Reusing the split above, this example prints a best tree, samples 3 alternatives, and predicts by voting across the set.
 
 ```python
 from splinter import RESPLINTER, export_text
@@ -102,7 +102,7 @@ alternatives = rset.sample_trees(3, seed=0, at_target=True)
 print(rset.predict_proba(X_test[:3]))
 ```
 
-This run found 15 trees, and `[0.2, 0.8]` for the third test row means three voted benign and twelve malignant, following the order in `rset.classes_`.
+This run found 15 trees, and `[0.2, 0.8]` for the third test row means 3 voted benign and twelve malignant, following the order in `rset.classes_`.
 
 The trees from `get_tree` and `sample_trees` can be printed with `export_text` or drawn with `plot_tree`. Include `classes=rset.classes_` to show the original labels.
 
@@ -124,7 +124,7 @@ print(loaded.predict(X_test[:3]))
 
 The example in [Fit a tree](#fit-a-tree) uses `SPLINTER`, whose branches cover contiguous ranges of a feature. You can replace it with `ShapeSPLINTER` when non-adjacent ranges should lead to the same branch. `LicketySPLINTER` evaluates candidate root splits using their completed subtrees, keeps one split, and repeats the search on each child; set `shape_mode=True` to allow nonlinear splits as well.
 
-All three handle 2–16 classes and can be imported from `splinter`, so you can use them with the fitting and prediction calls shown above. `RESPLINTER` handles binary tasks when you want a set of good trees instead of one.
+All 3 handle 2–16 classes and can be imported from `splinter`, so you can use them with the fitting and prediction calls shown above. `RESPLINTER` handles binary tasks when you want a set of good trees instead of one.
 
 ## Main parameters
 
