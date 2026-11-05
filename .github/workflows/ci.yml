@@ -1,0 +1,104 @@
+name: Build and test
+on:
+  push:
+    branches: [main, "release*"]
+  pull_request:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rust formatting
+        run: cargo fmt --check
+      - name: Clippy
+        # Not `-D warnings` yet: the code base still has clippy warnings
+        # (mostly argument counts and complex types).
+        run: cargo clippy --release --locked --no-default-features
+      - name: Ruff
+        run: |
+          python -m pip install uv
+          uvx ruff@0.15.12 check python tests examples
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.10", "3.11", "3.12"]
+    runs-on: ${{ matrix.os }}
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      RAYON_NUM_THREADS: "2"
+      MPLBACKEND: Agg
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install system libraries (macOS)
+        if: runner.os == 'macOS'
+        run: brew install libomp graphviz
+      - name: Install system libraries (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+      - name: Install dependencies
+        run: |
+          python -m pip install uv
+          uv sync --locked --all-extras --no-install-project --python "${{ matrix.python-version }}"
+      - name: Test Rust core
+        run: cargo test --release --locked --no-default-features
+      - name: Build extension
+        run: |
+          source .venv/bin/activate
+          maturin develop --release --locked
+      - name: Test Python package
+        run: .venv/bin/python -m pytest -q
+      - name: Run examples
+        run: |
+          out="$(mktemp -d)"
+          for script in examples/*.py; do
+            echo "== $script"
+            case "$script" in
+              examples/visualize.py|examples/rashomon_demo.py)
+                .venv/bin/python "$script" --outdir "$out" ;;
+              *)
+                (cd "$out" && "$GITHUB_WORKSPACE/.venv/bin/python" "$GITHUB_WORKSPACE/$script") ;;
+            esac
+          done
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build wheel and sdist
+        run: |
+          python -m pip install uv
+          uvx maturin build --release --locked -i python -o dist
+          uvx maturin sdist -o dist
+          uvx twine check dist/*
+      - name: Install the wheel in a fresh environment and fit a tree
+        run: |
+          uv venv --python 3.12 "$RUNNER_TEMP/venv"
+          VIRTUAL_ENV="$RUNNER_TEMP/venv" uv pip install dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/venv/bin/python" -I -c "
+          from sklearn.datasets import load_breast_cancer
+          import splinter
+          from splinter import SPLINTER
+          X, y = load_breast_cancer(return_X_y=True)
+          model = SPLINTER(max_depth=2).fit(X, y)
+          print(splinter.__version__, model.score(X, y))
+          assert model.score(X, y) > 0.85
+          "

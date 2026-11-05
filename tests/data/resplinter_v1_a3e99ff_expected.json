@@ -1,0 +1,827 @@
+{
+  "description": "Real RESPLINTER.save outputs from the pre-cleanup format-1 implementation; synthetic two-feature rows.",
+  "models": {
+    "closure": {
+      "archive": "resplinter_v1_a3e99ff_closure.npz",
+      "class1_count_total": 24,
+      "class1_counts": [
+        0,
+        0,
+        21,
+        21,
+        0,
+        0,
+        21,
+        21,
+        6,
+        6,
+        21,
+        21,
+        0,
+        0,
+        21,
+        21,
+        0,
+        0
+      ],
+      "classes": [
+        "no",
+        "yes"
+      ],
+      "fill_mode": "recursive",
+      "first_stage": {
+        "certification_mode": "exploratory",
+        "certification_reason": "parallel_root_uses_candidate_screening_and_top_n_selection",
+        "certified_optimal": false,
+        "gap": 0.0,
+        "is_optimal": false,
+        "lowerbound": 0.12,
+        "objective": 0.27,
+        "search_converged": false,
+        "termination_reason": "screened_best_found",
+        "timed_out": false,
+        "unsafe_heuristics_used": true
+      },
+      "first_tree": {
+        "children": [
+          {
+            "children": [
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              }
+            ],
+            "feature_index": 1,
+            "feature_name": "context",
+            "thresholds": [
+              0.5,
+              1.5
+            ]
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "class_counts": null,
+                    "loss": 0.0,
+                    "n_samples": 2,
+                    "prediction": 1
+                  },
+                  {
+                    "class_counts": null,
+                    "loss": 0.0,
+                    "n_samples": 2,
+                    "prediction": 0
+                  },
+                  {
+                    "class_counts": null,
+                    "loss": 0.0,
+                    "n_samples": 2,
+                    "prediction": 1
+                  }
+                ],
+                "feature_index": 1,
+                "feature_name": "context",
+                "thresholds": [
+                  0.5,
+                  1.5
+                ]
+              },
+              {
+                "children": [
+                  {
+                    "class_counts": null,
+                    "loss": 0.0,
+                    "n_samples": 2,
+                    "prediction": 0
+                  },
+                  {
+                    "class_counts": null,
+                    "loss": 0.0,
+                    "n_samples": 2,
+                    "prediction": 1
+                  },
+                  {
+                    "class_counts": null,
+                    "loss": 0.0,
+                    "n_samples": 2,
+                    "prediction": 0
+                  }
+                ],
+                "feature_index": 1,
+                "feature_name": "context",
+                "thresholds": [
+                  0.5,
+                  1.5
+                ]
+              }
+            ],
+            "feature_index": 0,
+            "feature_name": "regime",
+            "thresholds": [
+              1.5
+            ]
+          }
+        ],
+        "feature_index": 0,
+        "feature_name": "regime",
+        "thresholds": [
+          0.5
+        ]
+      },
+      "guarantee": {
+        "best_objective": 0.27,
+        "best_tree_certified_optimal": false,
+        "complete": false,
+        "complete_below_objective": null,
+        "count_saturated": false,
+        "coverage_scope": "candidate splits kept by the search (beam_width, transition_delta)",
+        "importance_note": "closure",
+        "inclusion_exact": true,
+        "incomplete_reason": "closure",
+        "lower_bound": null,
+        "objective_bound": 0.35100000000000003,
+        "optimality_gap": null,
+        "optimality_note": "The best tree is not proven optimal: the search screens the candidate splits at the root and keeps only the top-ranked ones.",
+        "optimality_scope": "candidate splits",
+        "search_converged": false,
+        "search_objective": 0.27,
+        "theta": 0.3
+      },
+      "incomplete_reason_codes": "closure",
+      "opt": 0.27,
+      "predictions": [
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no"
+      ],
+      "probabilities": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.75,
+          0.25
+        ],
+        [
+          0.75,
+          0.25
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_indices": [
+        14,
+        2,
+        4,
+        19,
+        13,
+        17
+      ],
+      "sample_tree_sha256": [
+        "15d7d37e8b2fead36edb5aef61dfdaecb6f281d9907da0e907e155f86e276527",
+        "739d76329199fd5035d8df9e663609a918b01eb69b0147cf70a1c92881c9a728",
+        "c12d87c661dff2dca8a9cdfea8effa7719b0044c16f6fbf278f442f1d46797f5",
+        "7b135bfbb48c4cdaa11ebf19c87108379fb1e8f3adbb32c833dfd3a2439e6b42",
+        "e9a82e7b5f9947ebd8cb706327b9b7042246df0ef1ad830a28ad47b8a211d082",
+        "6778a5f14ecd742ce2e890f14ca15c34aec6d6928879b1bccbbe73a23bd5884e"
+      ],
+      "sha256": "babb08ba896f5efb2252f15be5194b9cab191516a164d0ef9e30e364d66deaf8",
+      "stepb_mode": "none",
+      "tree_count": 24,
+      "tree_count_at_target": 24
+    },
+    "full": {
+      "archive": "resplinter_v1_a3e99ff_full.npz",
+      "class1_count_total": 8,
+      "class1_counts": [
+        0,
+        0,
+        7,
+        7,
+        0,
+        0,
+        7,
+        7,
+        2,
+        2,
+        7,
+        7,
+        0,
+        0,
+        7,
+        7,
+        0,
+        0
+      ],
+      "classes": [
+        "no",
+        "yes"
+      ],
+      "fill_mode": "full",
+      "first_stage": {
+        "certification_mode": "exploratory",
+        "certification_reason": "parallel_root_uses_candidate_screening_and_top_n_selection",
+        "certified_optimal": false,
+        "gap": 0.0,
+        "is_optimal": false,
+        "lowerbound": 0.27,
+        "objective": 0.27,
+        "search_converged": false,
+        "termination_reason": "screened_best_found",
+        "timed_out": false,
+        "unsafe_heuristics_used": true
+      },
+      "first_tree": {
+        "children": [
+          {
+            "children": [
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              }
+            ],
+            "feature_index": 1,
+            "feature_name": "context",
+            "thresholds": [
+              0.5,
+              1.5
+            ]
+          },
+          {
+            "children": [
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              }
+            ],
+            "feature_index": 1,
+            "feature_name": "context",
+            "thresholds": [
+              0.5,
+              1.5
+            ]
+          },
+          {
+            "children": [
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              }
+            ],
+            "feature_index": 1,
+            "feature_name": "context",
+            "thresholds": [
+              0.5,
+              1.5
+            ]
+          }
+        ],
+        "feature_index": 0,
+        "feature_name": "regime",
+        "thresholds": [
+          0.5,
+          1.5
+        ]
+      },
+      "guarantee": {
+        "best_objective": 0.27,
+        "best_tree_certified_optimal": false,
+        "complete": true,
+        "complete_below_objective": null,
+        "count_saturated": false,
+        "coverage_scope": "candidate splits kept by the search (beam_width, transition_delta)",
+        "importance_note": null,
+        "inclusion_exact": true,
+        "incomplete_reason": "",
+        "lower_bound": null,
+        "objective_bound": 0.35100000000000003,
+        "optimality_gap": null,
+        "optimality_note": "The best tree is not proven optimal: the search screens the candidate splits at the root and keeps only the top-ranked ones.",
+        "optimality_scope": "candidate splits",
+        "search_converged": false,
+        "search_objective": 0.27,
+        "theta": 0.3
+      },
+      "incomplete_reason_codes": "",
+      "opt": 0.27,
+      "predictions": [
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no"
+      ],
+      "probabilities": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.75,
+          0.25
+        ],
+        [
+          0.75,
+          0.25
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          0.125,
+          0.875
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_indices": [
+        6,
+        2,
+        4,
+        3,
+        5,
+        1
+      ],
+      "sample_tree_sha256": [
+        "93139b214c37e102405ccd99796f58ad01418bf9b276ffb05f3d7b29ee9f5208",
+        "40434378741ee3f3ecf75b7d353bf45a1a6fd0117e636d8ae2c97817a56107b0",
+        "15d7d37e8b2fead36edb5aef61dfdaecb6f281d9907da0e907e155f86e276527",
+        "e9a82e7b5f9947ebd8cb706327b9b7042246df0ef1ad830a28ad47b8a211d082",
+        "57c6d7dc6cba63b089e314c79374b63953e51b1a8289036d321568c5b59e60c7",
+        "15e6e6e75f09c06c8f816c16e4f6601b658d0f242259008b0b4909edffe0ea76"
+      ],
+      "sha256": "15df5fd121c448b189fcea6d7ccca7b8626ddc9a3923ee1cb489c53896d3e7c4",
+      "stepb_mode": "none",
+      "tree_count": 8,
+      "tree_count_at_target": 8
+    },
+    "recursive": {
+      "archive": "resplinter_v1_a3e99ff_recursive.npz",
+      "class1_count_total": 148,
+      "class1_counts": [
+        0,
+        0,
+        135,
+        135,
+        0,
+        0,
+        135,
+        135,
+        30,
+        30,
+        135,
+        135,
+        0,
+        0,
+        135,
+        135,
+        0,
+        0
+      ],
+      "classes": [
+        "no",
+        "yes"
+      ],
+      "fill_mode": "recursive",
+      "first_stage": {
+        "certification_mode": "exploratory",
+        "certification_reason": "parallel_root_uses_candidate_screening_and_top_n_selection",
+        "certified_optimal": false,
+        "gap": 0.0,
+        "is_optimal": false,
+        "lowerbound": 0.42333333333333334,
+        "objective": 0.42333333333333334,
+        "search_converged": false,
+        "termination_reason": "screened_converged_uncertified",
+        "timed_out": false,
+        "unsafe_heuristics_used": true
+      },
+      "first_tree": {
+        "children": [
+          {
+            "children": [
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              }
+            ],
+            "feature_index": 1,
+            "feature_name": "context",
+            "thresholds": [
+              0.5,
+              1.5
+            ]
+          },
+          {
+            "children": [
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              }
+            ],
+            "feature_index": 1,
+            "feature_name": "context",
+            "thresholds": [
+              0.5,
+              1.5
+            ]
+          },
+          {
+            "children": [
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 1
+              },
+              {
+                "class_counts": null,
+                "loss": 0.0,
+                "n_samples": 2,
+                "prediction": 0
+              }
+            ],
+            "feature_index": 1,
+            "feature_name": "context",
+            "thresholds": [
+              0.5,
+              1.5
+            ]
+          }
+        ],
+        "feature_index": 0,
+        "feature_name": "regime",
+        "thresholds": [
+          0.5,
+          1.5
+        ]
+      },
+      "guarantee": {
+        "best_objective": 0.27,
+        "best_tree_certified_optimal": false,
+        "complete": true,
+        "complete_below_objective": null,
+        "count_saturated": false,
+        "coverage_scope": "candidate splits kept by the search (beam_width, transition_delta)",
+        "importance_note": null,
+        "inclusion_exact": true,
+        "incomplete_reason": "",
+        "lower_bound": null,
+        "objective_bound": 0.35100000000000003,
+        "optimality_gap": null,
+        "optimality_note": "The best tree is not proven optimal: the search screens the candidate splits at the root and keeps only the top-ranked ones.",
+        "optimality_scope": "candidate splits",
+        "search_converged": false,
+        "search_objective": 0.42333333333333334,
+        "theta": 0.3
+      },
+      "incomplete_reason_codes": "",
+      "opt": 0.27,
+      "predictions": [
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no",
+        "yes",
+        "yes",
+        "no",
+        "no"
+      ],
+      "probabilities": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.08783783783783783,
+          0.9121621621621622
+        ],
+        [
+          0.08783783783783783,
+          0.9121621621621622
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.08783783783783783,
+          0.9121621621621622
+        ],
+        [
+          0.08783783783783783,
+          0.9121621621621622
+        ],
+        [
+          0.7972972972972973,
+          0.20270270270270271
+        ],
+        [
+          0.7972972972972973,
+          0.20270270270270271
+        ],
+        [
+          0.08783783783783783,
+          0.9121621621621622
+        ],
+        [
+          0.08783783783783783,
+          0.9121621621621622
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.08783783783783783,
+          0.9121621621621622
+        ],
+        [
+          0.08783783783783783,
+          0.9121621621621622
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_indices": [
+        74,
+        38,
+        20,
+        91,
+        105,
+        85
+      ],
+      "sample_tree_sha256": [
+        "fcb3c6bbb78b4cf869500a05a9356711a3a032b489d7b97e385ead38c4b08eac",
+        "0399dd2891123189b11fb3c2b36facaa6d48a2fb8c721b2081296cd07341f2ee",
+        "ad4d474c7d8277b57aeb9803a01a310411c0996c652f4ce90cd065c65842ce29",
+        "7865c66cda5792bd5931a5b17fc3c43726aa6cd8c19e9256a466123f43a36fe1",
+        "5e7c4c9e49e4bdf4f424cef28c18ddfae30fe8a2a6cef3721b01a83af898f0be",
+        "98f7c867a46a1010a5f6eded4c15c9b0de9bc93e51cc97b375b7e329f1e054a9"
+      ],
+      "sha256": "e97f258e4e5dd191ca77e17768e3b6654a9e9a181ed835e42a1fc05f0e74b8a0",
+      "stepb_mode": "paper",
+      "tree_count": 148,
+      "tree_count_at_target": 148
+    }
+  },
+  "source_commit": "a3e99ff"
+}

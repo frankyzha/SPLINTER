@@ -1,0 +1,68 @@
+name: Release wheels
+# Builds wheels and the sdist for a version tag and keeps them as workflow
+# artifacts. Nothing is uploaded to PyPI yet: the distribution name is still
+# open (the name "splinter" is taken on PyPI).
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+jobs:
+  wheels:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, target: x86_64, manylinux: auto }
+          - { os: ubuntu-latest, target: aarch64, manylinux: auto }
+          - { os: macos-15-intel, target: x86_64 }
+          - { os: macos-14, target: aarch64 }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: |
+            3.10
+            3.11
+            3.12
+      - name: Build wheels
+        uses: PyO3/maturin-action@v1
+        with:
+          target: ${{ matrix.target }}
+          # manylinux container on Linux; ignored on macOS.
+          manylinux: ${{ matrix.manylinux }}
+          # One wheel per Python version (the extension does not use abi3).
+          args: --release --locked --out dist -i 3.10 3.11 3.12
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheels-${{ matrix.os }}-${{ matrix.target }}
+          path: dist
+
+  sdist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build sdist
+        uses: PyO3/maturin-action@v1
+        with:
+          command: sdist
+          args: --out dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: dist
+
+  # Publishing, once the PyPI name is settled: trusted publishing needs a
+  # `pypi` environment and the project registered on PyPI.
+  # publish:
+  #   needs: [wheels, sdist]
+  #   runs-on: ubuntu-latest
+  #   environment: pypi
+  #   permissions:
+  #     id-token: write
+  #   steps:
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         path: dist
+  #         merge-multiple: true
+  #     - uses: pypa/gh-action-pypi-publish@release/v1

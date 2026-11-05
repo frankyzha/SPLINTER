@@ -1,0 +1,45 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Rust build artifacts
+target/
+
+# Compiled extension modules
+*.so
+*.dylib
+*.pyd
+
+# uv
+.venv/
+
+# OS metadata
+.DS_Store
+
+# Generated experiments and downloaded artifacts
+/results/
+/tree_figures/
+/cache/
+.pytest_cache/
+dhat-heap.json
+.ipynb_checkpoints/
+
+# Saved models and drawn trees from the examples
+*.npz
+!tests/data/*.npz
+tree.png
+tree.pdf
+tree.svg
+
+# Tool caches and coverage
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/

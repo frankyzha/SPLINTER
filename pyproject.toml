@@ -1,0 +1,95 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+# TODO(D5): the name "splinter" is taken on PyPI (a browser-automation
+# library); choose a distribution name before the first PyPI upload.
+name = "splinter"
+version = "0.1.0"
+description = "Sparse multiway decision trees with lookahead, and Rashomon sets of near-optimal trees"
+readme = "README.md"
+# Table form: the SPDX `license = "MIT"` + `license-files` (PEP 639) needs
+# maturin >= 1.9 (1.7 and 1.8 reject it); the build-system floor is 1.7.
+license = { file = "LICENSE" }
+requires-python = ">=3.10,<3.13"
+authors = [
+    { name = "Bo Chi" },
+    { name = "Yulin Zhang" },
+    { name = "Chudi Zhong" },
+    { name = "Cynthia Rudin" },
+]
+keywords = [
+    "decision trees",
+    "interpretable machine learning",
+    "multiway splits",
+    "Rashomon set",
+    "scikit-learn",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = [
+    "numpy>=1.24,<2.5",
+    "scikit-learn>=1.3",
+    "lightgbm>=4.0,<5",
+    "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "maturin>=1.7"]
+visualization = ["matplotlib>=3.8,<4", "graphviz>=0.20,<1"]
+
+[project.urls]
+Repository = "https://github.com/frankyzha/SPLINTER"
+Documentation = "https://github.com/frankyzha/SPLINTER/blob/main/README.md"
+Changelog = "https://github.com/frankyzha/SPLINTER/blob/main/CHANGELOG.md"
+Issues = "https://github.com/frankyzha/SPLINTER/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.maturin]
+profile = "release"
+features = ["pyo3/extension-module"]
+module-name = "splinter.multiway_solver"
+python-source = "python"
+manifest-path = "Cargo.toml"
+# The wheel holds only the `splinter` package and the compiled extension; the
+# sdist also carries the tests, docs and examples.
+include = [
+    { path = "CHANGELOG.md", format = "sdist" },
+    { path = "CITATION.cff", format = "sdist" },
+    { path = "CONTRIBUTING.md", format = "sdist" },
+    { path = "docs/**/*", format = "sdist" },
+    { path = "examples/**/*", format = "sdist" },
+    { path = "tests/**/*", format = "sdist" },
+]
+exclude = [
+    "python/splinter/*.so",
+    "python/splinter/*.pyd",
+    "**/__pycache__/**",
+    "**/*.py[co]",
+    "**/.ipynb_checkpoints/**",
+    ".github/**",
+    "target/**",
+]
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+# Ruff's default rules, minus two style rules the code base does not follow:
+# E731 (lambda assigned to a name) and E741 (single-letter names such as `l`).
+ignore = ["E731", "E741"]
