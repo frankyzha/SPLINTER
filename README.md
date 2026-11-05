@@ -2,9 +2,11 @@
 
 Official code for the NeurIPS 2026 paper: **Interpretable Multiway-Split Trees**, by Bo Chi, Yulin Zhang, Chudi Zhong, and Cynthia Rudin.
 
-SPLINTER is a family of multiway decision tree algorithms that combine dynamic programming with branch-and-bound search. A node can split a feature into several ranges, such as low, medium, and high. Nonlinear variants can also send separated ranges to the same branch, such as grouping low and high values together. To choose a split, the algorithms look ahead at the trees it would produce. LightGBM supplies the candidate thresholds for this search.
+SPLINTER is a family of accurate, fast, and interpretable decision tree algorithms that combine dynamic programming with branch-and-bound search. A node can split a feature into several ranges, such as low, medium, and high values. Nonlinear variants can also group non-adjacent ranges into the same branch, such as low and high values.
 
-SPLINTER improves the trade-off between accuracy and the number of distinct features used for each prediction. We also implement RESPLINTER, which builds a Rashomon set of near-optimal trees. This lets you compare different rules for the same data, sample alternative trees, and see where their predictions disagree.
+We first fit LightGBM on the training data and collect the thresholds used in its trees. These thresholds are possible split points for each feature: a split at age 50, for example, makes 50 a candidate threshold for age. SPLINTER uses them to propose multiway splits and looks ahead at the subtrees each split could produce before choosing among them. You can reuse the same LightGBM thresholds when fitting trees with different settings.
+
+We also implement RESPLINTER, which builds a Rashomon set of near-optimal trees. This lets you compare different rules for the same data, sample alternative trees, and see where their predictions disagree.
 
 <p align="center">
   <img src="docs/images/teaser.png" alt="A SPLINTER tree on the breast cancer data, with a three-way split on worst perimeter" width="420">
@@ -120,7 +122,7 @@ print(loaded.predict(X_test[:3]))
 
 ## Choose a method
 
-The example in [Fit a tree](#fit-a-tree) uses `SPLINTER`, whose branches cover contiguous ranges of a feature. You can replace it with `ShapeSPLINTER` when separated ranges should lead to the same branch. `LicketySPLINTER` evaluates candidate root splits using their completed subtrees, keeps one split, and repeats the search on each child; set `shape_mode=True` to allow nonlinear splits as well.
+The example in [Fit a tree](#fit-a-tree) uses `SPLINTER`, whose branches cover contiguous ranges of a feature. You can replace it with `ShapeSPLINTER` when non-adjacent ranges should lead to the same branch. `LicketySPLINTER` evaluates candidate root splits using their completed subtrees, keeps one split, and repeats the search on each child; set `shape_mode=True` to allow nonlinear splits as well.
 
 All three handle 2–16 classes and can be imported from `splinter`, so you can use them with the fitting and prediction calls shown above. `RESPLINTER` handles binary tasks when you want a set of good trees instead of one.
 
