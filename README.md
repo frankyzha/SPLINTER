@@ -2,7 +2,7 @@
 
 Official code for the NeurIPS 2026 paper: **Interpretable Multiway-Split Trees**, by Bo Chi, Yulin Zhang, Chudi Zhong, and Cynthia Rudin.
 
-SPLINTER is a family of accurate, fast, and interpretable decision tree algorithms that combine dynamic programming with branch-and-bound search. A node can split a feature into several ranges, such as low, medium, and high values. Nonlinear variants can also group non-adjacent ranges into the same branch, such as low and high values.
+SPLINTER is a family of accurate, fast, and interpretable decision tree algorithms that combine DP with BnB search. A node can split a feature into several ranges, such as low, medium, and high values. Nonlinear variants can also group non-adjacent ranges into the same branch, such as low and high values.
 
 We first fit LightGBM on the training data and collect the thresholds used in its trees. These thresholds are possible split points for each feature: a split at age 50, for example, makes 50 a candidate threshold for age. SPLINTER uses them to propose multiway splits and looks ahead at the subtrees each split could produce before choosing among them. You can reuse the same LightGBM thresholds when fitting trees with different settings.
 
