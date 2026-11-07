@@ -1,6 +1,6 @@
 # SPLINTER
 
-Official code for the NeurIPS 2026 paper: **Interpretable Multiway-Split Trees**, by Bo Chi, Yulin Zhang, Chudi Zhong, and Cynthia Rudin.
+Official code for the NeurIPS 2026 paper: **Interpretable Multiway-Split Trees**, by Bo Chi\*, Yulin Zhang\*, Chudi Zhong, and Cynthia Rudin.
 
 SPLINTER is a family of accurate, fast, and interpretable multiway-split decision tree algorithms that combine DP with BnB search. The algorithms learn trees with multiway splits, where a node can have more than 2 branches. For example, one node can send low, medium, and high values of a feature to 3 different branches. Nonlinear splits can also group non-adjacent ranges, such as low and high values, into the same branch.
 
@@ -11,6 +11,8 @@ We also implement RESPLINTER, which builds a Rashomon set of near-optimal trees.
 <p align="center">
   <img src="docs/images/teaser.png" alt="A SPLINTER tree on the breast cancer data, with a 3-way split on worst perimeter" width="420">
 </p>
+
+\* Equal contribution.
 
 ## Installation
 
